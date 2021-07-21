@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PersonalizerMobile.Views.UsuarioView"
+             xmlns:vm="clr-namespace:PersonalizerMobile.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:UsuarioViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Picker Title="¿Qué hora es?"
+                    TitleColor="Blue"
+                    ItemsSource="{Binding Horas}"
+                    SelectedItem="{Binding Usuario.Hora}"/>
+
+            <Picker Title="¿Qué tipo de comida prefieres?"
+                    TitleColor="Blue"
+                    ItemsSource="{Binding Sabores}"
+                    SelectedItem="{Binding Usuario.Sabor}"/>
+
+            <Button Text="¡Tengo hambre!"
+                    Command="{Binding ComandoObtenerRecomendacion}"
+                    CornerRadius="20"
+                    TextColor="White"
+                    BackgroundColor="Green"/>
+
+            <Label Text="{Binding Recomendacion.RewardActionId}"
+                   FontSize="Large"
+                   TextColor="Orange"
+                   FontAttributes="Bold"/>
+
+            <StackLayout RadioButtonGroup.SelectedValue="{Binding Retroalimentacion}">
+                <Label Text="¿Te agrada la sugerencia?"/>
+                <RadioButton Content="Sí" Value="True" />
+                <RadioButton Content="No" Value="False" />
+            </StackLayout>
+
+            <Button Text="Envía retroalimentación"
+                    CornerRadius="20"
+                    TextColor="White"
+                    BackgroundColor="Green"
+                    Command="{Binding ComandoDarRetroalimentacion}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
